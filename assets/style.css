@@ -9,12 +9,16 @@ body{
 header a{
     display: inline-block;
     text-decoration: none;
-    color: rgb(177, 60, 177);
+    color: rgb(92, 31, 150);
     font-size: 1.5rem;
     margin: 1rem;
 }
 
-#timer{
+header a:hover{
+    color: rgb(206, 90, 230);
+}
+
+header p{
     float: right;
     font-size: 1.5rem;
 }
