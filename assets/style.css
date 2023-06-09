@@ -49,6 +49,52 @@ div button{
     margin-top: 1rem;
 }
 
+#answer-attachment{
+    margin-top: 1rem;
+    font-weight: 400;
+    font-style: italic;
+    text-align: left;
+    color: rgb(211, 211, 211);
+    border-top: .3rem solid rgb(211, 211, 211);
+    display: none;
+}
+
 div button:hover{
+    background-color: rgb(206, 90, 230);
+}
+
+.answers-box{
+    display: none;
+    margin: 0;
+}
+
+form{
+    display: none;
+}
+
+form label{
+    font-size: 1.5rem;
+}
+
+form input{
+    font-size: 1.5rem;
+    padding:.5rem;
+}
+
+form input:focus-visible{
+    outline-color: rgb(20, 164, 231);
+}
+
+form input[type="submit"]{
+    border: 0;
+    color: white;
+    background-color: rgb(92, 31, 150);
+    padding: .7rem 1.7rem;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+
+form input[type="submit"]:hover{
     background-color: rgb(206, 90, 230);
 }
