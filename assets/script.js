@@ -144,7 +144,9 @@ formElement.addEventListener('submit', function(event) {
     var name = formInput.value.trim();
     var score = timerCount;
     if(formInput.value === '') {
-        alert('Please enter your name!');
+        alert('Please enter your initials!');
+    } else if (formInput.value.length > 3) {
+        alert('Please enter your initials with no more than 3 characters!');
     } else {
         var user = {
             name: name,
