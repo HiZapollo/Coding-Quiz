@@ -98,3 +98,29 @@ form input[type="submit"]{
 form input[type="submit"]:hover{
     background-color: rgb(206, 90, 230);
 }
+
+#scores{
+    display: none;
+    display: inline-block;
+    width: -webkit-fill-available;
+}
+
+.container{
+    display : none;
+    margin : 0;
+}
+
+#scores li{
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    min-width: 12rem;
+    list-style-type: none;
+}
+
+#scores li:nth-child(odd){
+    background-color: lightgray;
+}
+.scoreboardBtn{
+    margin: 0 .5rem;
+    float: left;
+}
