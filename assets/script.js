@@ -6,6 +6,10 @@ var questionBoxElement = document.querySelector('#question-box');
 var answerBoxElement = document.querySelector('.answers-box');
 var formElement = document.querySelector('#form');
 var formInput = document.querySelector('#name');
+var scoreListElement = document.querySelector('#scores');
+var scoreLinkElement = document.querySelector('#highscore');
+var timerTxtElement = document.querySelector('#timer-txt');
+var containerElement = document.querySelector('.container');
 
 var answerAttachmentElement = document.createElement('h1');
 answerAttachmentElement.setAttribute('id', 'answer-attachment');
@@ -15,6 +19,7 @@ var timer;
 var timerCount;
 var stopTimer = false;
 var questionIndex = 0;
+var highScores = [];
 
 var questions = [
     {
@@ -116,6 +121,7 @@ function startTimer() {
 function allDone() {
     console.log('all done');
     clearInterval(timer);
+    rememberHighScores();
     answerBoxElement.style.display = 'none';
     paragraphElement.style.display = 'block';
     questionBoxElement.style.textAlign = 'center';
@@ -127,15 +133,75 @@ function allDone() {
 formElement.addEventListener('submit', function(event) {
     event.preventDefault();
     console.log('form submitted');
-    var name = formInput.value;
+    var name = formInput.value.trim();
     var score = timerCount;
     if(formInput.value === '') {
         alert('Please enter your name!');
     } else {
-        localStorage.setItem('name', name);
-        localStorage.setItem('score', score);
-        //showHighScores();
+        var user = {
+            name: name,
+            score: score
+        }
+        highScores.push(user);
+        var stringUserObject = JSON.stringify(highScores);
+        localStorage.setItem('user', stringUserObject);
+        showHighScores();
     }
 });
+
+function rememberHighScores() {
+    rememberedScores = JSON.parse(localStorage.getItem('user'));
+    if (rememberedScores!== null) {
+        highScores = rememberedScores;
+    }
+}
+
+scoreLinkElement.addEventListener('click', function(event) {
+    event.preventDefault();
+    showHighScores();
+});
+
+function showHighScores() {
+    rememberHighScores();
+    //sort high scores by least to highest score
+    highScores.sort(function(a, b) {
+        return b.score - a.score;
+    });
+
+    //get rid of all other elements
+    paragraphElement.style.display = 'none';
+    startButtonElement.style.display = 'none';
+    scoreLinkElement.style.display = 'none';
+    timerTxtElement.style.display = 'none';
+    formElement.style.display = 'none';
+
+    //show the list and add the scores to it
+    containerElement.style.display = 'block';
+    questionElement.textContent = 'High Scores';
+    for (var i = 0; i < highScores.length; i++) {
+        var liElement = document.createElement('li');
+        liElement.textContent =(i+1)+'. '+ highScores[i].name + ' - '+ highScores[i].score;
+        scoreListElement.appendChild(liElement);
+    }
+    var backBtnElement = document.createElement('button');
+    backBtnElement.setAttribute('class', 'scoreboardBtn');
+    backBtnElement.textContent = 'Go Back';
+    var clearBtnElement = document.createElement('button');
+    clearBtnElement.setAttribute('class', 'scoreboardBtn');
+    clearBtnElement.textContent = 'Clear';
+    scoreListElement.appendChild(backBtnElement);
+    scoreListElement.appendChild(clearBtnElement);
+    backBtnElement.addEventListener('click', backBtn);
+    clearBtnElement.addEventListener('click', clearBtn);
+}
+
+function backBtn() {
+    location.reload();
+}
+
+function clearBtn() {
+    localStorage.clear();
+    location.reload();
+}
 
 startButtonElement.addEventListener('click', startButton);
