@@ -12,7 +12,8 @@ N/A
 
 This website can be used to test coding knowledge in order to get the highest score possible. Clicking the start button will begin the timer and show the questions, answering the questions will show the next. When wrong, the timer will go down by 10 seconds. When done with the last question, your score will be the time left, and you can submit your score with your initials. Scores can be viewed by clicking the 'View high scores' link on the top left of the page, or by submitting a new score. Scores can be cleared by clicking the 'clear' button.
 
-![coding quiz website, with a start button and a highscore link]
+![coding quiz website, with a start button and a highscore link](https://github.com/HiZapollo/Coding-Quiz/assets/129823817/d8bdff42-f64a-49ae-938a-8143e1626d9b)
+
 
 
 
